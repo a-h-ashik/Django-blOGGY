@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href=" {% static 'blog/css/about.css' %} ">
+{% endblock css %}
+{% block tittle %}About{% endblock tittle %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="image col col-sm-5">
+        <img class="img-thumbnail" src="{% static 'blog/image/ashik.jpg' %}">
+      </div>
+      <div class="info col col=sm-5 offset-sm-2">
+        <span class="name">Hello, I am <span>Abid Hossain Ashik</span></span><br>
+        <span class="text">
+          <div class="wrapper">
+            <span class="field">
+              Age <br>
+              Religion <br>
+              Nationality <br>
+              Address 
+            </span>
+            <span class="data">
+              : 22 <br>
+              : Islam <br>
+              : Bangladeshi <br>
+              : Dhaka, Bangladesh
+            </span>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+{% endblock content %}

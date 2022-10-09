@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% block tittle %}Sign Up{% endblock tittle %}
+{% block css %}
+  <style>
+    .error{
+      color: red;
+    }
+    @media (max-width: 575px){
+      .col{
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+  </style>
+{% endblock css %}
+
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col col-sm-6 mt-2 py-2 bg-light rounded">
+        <div class="tittle text-center text-white bg-secondary fs-4 fw-bold py-2 mb-1">CREATE NEW POST</div>
+
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="mb-2">
+              {{field.label_tag}} {{field}} <span class="error">{{field.errors | striptags}}</span>
+            </div>
+          {% endfor %}
+          <input class="btn-secondary text-white border-0 rounded" type="submit" value="Post">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

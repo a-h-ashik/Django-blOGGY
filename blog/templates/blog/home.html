@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block tittle %}Home{% endblock tittle %}
+{% block css %}
+  <link rel="stylesheet" href=" {% static 'blog/css/home.css' %} ">
+{% endblock css %}
+
+{% block content %}
+  <div class="container-mod-1">
+    <div class="row justify-content-center">
+      <div class="content col col-lg-7 col-sm-9 mt-2">
+        {% if data %}
+        {% for post in data %}
+            <div class="post">
+              <div class="writer">
+                <p class="author">
+                  <a href="#">@{{post.user_name}}</a>
+                  <span>{{post.date}}</span>
+                </p>
+
+
+                <div class="dropdown">
+                  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">  
+                  </a>
+
+                  {% if request.user.username == post.user_name %}
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="{% url 'updatepost' id=post.id %}">Edit</a></li>
+                      <li><span class="dropdown-item">
+                        <form action="{% url 'deletepost' id=post.id %}" method="post">
+                          {% csrf_token %}
+                          <input type="submit" value="Delete" style="padding: 0; border: none; background: none;">
+                        </form>
+                      </span></li>
+                    </ul>
+                  {% endif %}
+
+                </div>
+              </div>
+
+              <div class="message">
+                <span class="tittle">
+                  {{post.tittle}}
+                </span>
+                <span class="text">
+                  {{post.description}}
+                </span>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No data is recorded yet!</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
